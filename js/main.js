@@ -48,11 +48,15 @@ function newTask() {
   btnSucc.addEventListener("click", function () {
     if (newTaskk.boolean === false) {
       task.classList.add("text-decoration-line-through");
+      pending--;
+      pendingTask();
 
       newTaskk.boolean = true;
       tasks.push(newTaskk);
     } else {
       task.classList.remove("text-decoration-line-through");
+      pending++;
+      pendingTask();
       newTaskk.boolean = false;
       tasks.push(newTaskk);
     }
