@@ -21,8 +21,3 @@ function newTask() {
   divTask.append(btnDelete);
   console.log(btnDeleteEl);
 }
-
-function onClickBtnDelete() {
-  const clickEl = this.closest(".hover");
-  clickEl.remove;
-}
