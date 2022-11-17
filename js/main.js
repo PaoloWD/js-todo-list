@@ -1,7 +1,6 @@
 const addTodo = document.querySelector(".btn-primary");
 const inputTextEl = document.querySelector(".form-control");
 const containerEl = document.querySelector(".bg-white");
-console.log(addTodo);
 addTodo.addEventListener("click", function () {
   newTask();
 });
@@ -14,10 +13,12 @@ function newTask() {
   task.innerHTML = inputTextEl.value;
   const btnDelete = document.createElement("button");
   btnDelete.classList.add("btn", "btn-danger", "mb-2");
-  const btnDeleteEl = document.querySelector(".btn-danger");
 
+  btnDelete.addEventListener("click", function () {
+    console.log(divTask);
+    divTask.remove();
+  });
   containerEl.append(divTask);
   divTask.append(task);
   divTask.append(btnDelete);
-  console.log(btnDeleteEl);
 }
