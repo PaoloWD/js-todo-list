@@ -1,0 +1,8 @@
+.bg-form {
+  background-color: lightgray;
+  width: 100%;
+}
+
+.bg-white .hover:hover button {
+  display: block;
+}
