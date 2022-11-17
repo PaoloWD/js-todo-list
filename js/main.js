@@ -3,15 +3,24 @@ const inputTextEl = document.querySelector(".form-control");
 const containerEl = document.querySelector(".bg-white");
 const tasks = [];
 
-addTodo.addEventListener("click", function () {
-  newTask();
+inputTextEl.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    console.log(addTodo);
+    addTodo.click(newTask());
+  }
 });
 
 function newTask() {
   const divTask = document.createElement("div");
   divTask.classList.add("d-flex", "hover");
   const task = document.createElement("div");
-  task.classList.add("bg-form", "mb-2");
+  task.classList.add(
+    "bg-form",
+    "mb-2",
+    "justify-content-center",
+    "d-flex",
+    "align-items-center"
+  );
   let newTaskk = {
     text: inputTextEl.value,
     boolean: true,
