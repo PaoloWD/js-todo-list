@@ -1,17 +1,21 @@
 const addTodo = document.querySelector(".btn-primary");
 const inputTextEl = document.querySelector(".form-control");
 const containerEl = document.querySelector(".bg-white");
+const footerEl = document.querySelector(".footer");
+let pending = 0;
 const tasks = [];
-
+console.log(pending);
 inputTextEl.addEventListener("keypress", send);
 addTodo.addEventListener("click", send);
-
+//il numero 13 è per identificare il tasto invio della tastiera
 function send(a) {
   if ((a.type === "keypress" && a.which === 13) || a.type === "click") {
     newTask();
+    pending++;
+    pendingTask();
   }
 }
-
+pendingTask();
 function newTask() {
   const divTask = document.createElement("div");
   divTask.classList.add("d-flex", "hover");
@@ -33,6 +37,8 @@ function newTask() {
   btnDelete.classList.add("btn", "btn-danger", "mb-2");
   btnDelete.textContent = "X";
   btnDelete.addEventListener("click", function () {
+    pending--;
+    pendingTask();
     console.log(divTask);
     divTask.remove();
   });
@@ -53,8 +59,11 @@ function newTask() {
     console.log(tasks);
   });
   containerEl.append(divTask);
-  divTask.append(task);
-  divTask.append(btnDelete);
-  divTask.append(btnSucc);
+  divTask.append(task, btnDelete, btnSucc);
+
   console.log(tasks);
+}
+
+function pendingTask() {
+  footerEl.innerHTML = `You have ${pending} pending task`;
 }

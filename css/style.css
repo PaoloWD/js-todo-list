@@ -6,3 +6,7 @@
 .bg-white .hover:hover button {
   display: block;
 }
+
+.width {
+  width: 30%;
+}
