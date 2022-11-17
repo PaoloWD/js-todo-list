@@ -2,6 +2,10 @@ const addTodo = document.querySelector(".btn-primary");
 const inputTextEl = document.querySelector(".form-control");
 const containerEl = document.querySelector(".bg-white");
 const footerEl = document.querySelector(".footer");
+const btnClearEl = document.querySelector(
+  ".justify-content-around .btn-primary"
+);
+console.log(btnClearEl);
 let pending = 0;
 const tasks = [];
 console.log(pending);
@@ -13,6 +17,7 @@ function send(a) {
     newTask();
     pending++;
     pendingTask();
+    inputClear();
   }
 }
 pendingTask();
@@ -42,6 +47,7 @@ function newTask() {
     console.log(divTask);
     divTask.remove();
   });
+
   const btnSucc = document.createElement("button");
   btnSucc.classList.add("btn", "btn-success", "mb-2");
   btnSucc.textContent = "V";
@@ -70,4 +76,22 @@ function newTask() {
 
 function pendingTask() {
   footerEl.innerHTML = `You have ${pending} pending task`;
+}
+
+function clearAll() {
+  const papa = document.querySelectorAll(".hover");
+  papa.forEach((hover) => {
+    hover.remove();
+  });
+}
+
+btnClearEl.addEventListener("click", function () {
+  inputClear();
+  pending = 0;
+  pendingTask();
+  clearAll();
+});
+
+function inputClear() {
+  inputTextEl.value = "";
 }
