@@ -15,9 +15,6 @@ addTodo.addEventListener("click", send);
 //il numero 13 è per identificare il tasto invio della tastiera
 function send(a) {
   if ((a.type === "keypress" && a.which === 13) || a.type === "click") {
-    if (pending === 0) {
-      pending = 0;
-    }
     pending++;
     newTask();
     pendingTask();
