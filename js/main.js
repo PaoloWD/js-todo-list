@@ -37,6 +37,7 @@ function newTask() {
     text: inputTextEl.value,
     boolean: false,
   };
+
   tasks.push(newTaskk);
   task.innerHTML = newTaskk.text;
   const btnDelete = document.createElement("button");
@@ -44,36 +45,36 @@ function newTask() {
   btnDelete.textContent = "X";
   btnDelete.addEventListener("click", function () {
     if (newTaskk.boolean === true) {
+      console.log("cancel", pending);
     } else {
       pending--;
+      console.log("cancel else", pending);
     }
 
     tasks.splice(inputTextEl.value, 1);
     pendingTask();
     divTask.remove();
-    console.log(tasks);
   });
 
-  const btnSucc = document.createElement("button");
-  btnSucc.classList.add("btn", "btn-success", "mb-2");
-  btnSucc.textContent = "V";
-  btnSucc.addEventListener("click", function () {
+  task.addEventListener("click", function () {
     if (newTaskk.boolean === false) {
       pending--;
       task.classList.add("text-decoration-line-through");
       pendingTask();
 
       newTaskk.boolean = true;
+      console.log("primo click testo", newTaskk.boolean);
     } else {
       task.classList.remove("text-decoration-line-through");
       pending++;
 
       pendingTask();
       newTaskk.boolean = false;
+      console.log("secondo click testo", newTaskk.boolean);
     }
   });
   containerEl.append(divTask);
-  divTask.append(task, btnDelete, btnSucc);
+  divTask.append(task, btnDelete);
 }
 
 function pendingTask() {
