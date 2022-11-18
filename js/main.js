@@ -5,15 +5,19 @@ const footerEl = document.querySelector(".footer");
 const btnClearEl = document.querySelector(
   ".justify-content-around .btn-primary"
 );
-console.log(btnClearEl);
-let pending = 0;
+
 const tasks = [];
-console.log(pending);
+
+let pending = 0;
+
 inputTextEl.addEventListener("keypress", send);
 addTodo.addEventListener("click", send);
 //il numero 13 è per identificare il tasto invio della tastiera
 function send(a) {
   if ((a.type === "keypress" && a.which === 13) || a.type === "click") {
+    if (pending === 0) {
+      pending = 0;
+    }
     pending++;
     newTask();
     pendingTask();
@@ -36,15 +40,19 @@ function newTask() {
     text: inputTextEl.value,
     boolean: false,
   };
-
+  tasks.push(newTaskk);
   task.innerHTML = newTaskk.text;
   const btnDelete = document.createElement("button");
   btnDelete.classList.add("btn", "btn-danger", "mb-2");
   btnDelete.textContent = "X";
   btnDelete.addEventListener("click", function () {
-    pending--;
+    if (newTaskk.boolean === true) {
+    } else {
+      pending--;
+    }
+
+    tasks.splice(inputTextEl.value, 1);
     pendingTask();
-    console.log(divTask);
     divTask.remove();
   });
 
@@ -53,25 +61,21 @@ function newTask() {
   btnSucc.textContent = "V";
   btnSucc.addEventListener("click", function () {
     if (newTaskk.boolean === false) {
-      task.classList.add("text-decoration-line-through");
       pending--;
+      task.classList.add("text-decoration-line-through");
       pendingTask();
 
       newTaskk.boolean = true;
-      tasks.push(newTaskk);
     } else {
       task.classList.remove("text-decoration-line-through");
       pending++;
+
       pendingTask();
       newTaskk.boolean = false;
-      tasks.push(newTaskk);
     }
-    console.log(tasks);
   });
   containerEl.append(divTask);
   divTask.append(task, btnDelete, btnSucc);
-
-  console.log(tasks);
 }
 
 function pendingTask() {
@@ -95,3 +99,8 @@ btnClearEl.addEventListener("click", function () {
 function inputClear() {
   inputTextEl.value = "";
 }
+
+//sostituire un oggetto
+//font awesome
+//pending task mannaggia a chi so io FINITO DOPO 3 ORE
+//MANNAGGIA AL GRANDISSIMO
