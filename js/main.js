@@ -52,10 +52,12 @@ function newTask() {
   };
 
   tasks.push(newTaskk);
+  console.log("prima di aver cancellato", tasks);
   task.innerHTML = newTaskk.text;
   const btnDelete = document.createElement("button");
   btnDelete.classList.add("btn", "btn-danger", "mb-2");
   btnDelete.textContent = "X";
+
   btnDelete.addEventListener("click", function () {
     if (newTaskk.boolean === true) {
       console.log("cancel", pending);
@@ -67,6 +69,8 @@ function newTask() {
     tasks.splice(inputTextEl.value, 1);
     pendingTask();
     divTask.remove();
+
+    console.log("dopo aver cancellato", tasks);
   });
 
   task.addEventListener("click", function () {
@@ -76,14 +80,20 @@ function newTask() {
       pendingTask();
 
       newTaskk.boolean = true;
-      console.log("primo click testo", newTaskk.boolean);
+      console.log(
+        "primo click testo chiave dentro l'oggetto",
+        newTaskk.boolean
+      );
     } else {
       task.classList.remove("text-decoration-line-through");
       pending++;
 
       pendingTask();
       newTaskk.boolean = false;
-      console.log("secondo click testo", newTaskk.boolean);
+      console.log(
+        "secondo click testo chiave dentro l'oggetto",
+        newTaskk.boolean
+      );
     }
   });
   containerEl.append(divTask);
