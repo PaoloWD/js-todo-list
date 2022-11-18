@@ -7,7 +7,7 @@ const btnClearEl = document.querySelector(
 );
 
 const tasks = [];
-
+let antiscam = 0;
 let pending = 0;
 
 inputTextEl.addEventListener("keypress", send);
@@ -15,10 +15,23 @@ addTodo.addEventListener("click", send);
 //il numero 13 è per identificare il tasto invio della tastiera
 function send(a) {
   if ((a.type === "keypress" && a.which === 13) || a.type === "click") {
-    pending++;
-    newTask();
-    pendingTask();
-    inputClear();
+    if (inputTextEl.value === "") {
+      if (antiscam === 1) {
+        alert(
+          "Mi dispiace, hai esagerato. Il tuo computer si autodistruggerà tra 3 secondi"
+        );
+      } else {
+        alert(
+          "Anche se ti chiami Florian, non puoi esimerti dal scrivere qualcosa. La prossima volta succederà qualcosa di molto brutto"
+        );
+      }
+      antiscam++;
+    } else {
+      pending++;
+      newTask();
+      pendingTask();
+      inputClear();
+    }
   }
 }
 pendingTask();
