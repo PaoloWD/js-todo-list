@@ -51,6 +51,7 @@ function newTask() {
     tasks.splice(inputTextEl.value, 1);
     pendingTask();
     divTask.remove();
+    console.log(tasks);
   });
 
   const btnSucc = document.createElement("button");
@@ -99,5 +100,6 @@ function inputClear() {
 
 //sostituire un oggetto
 //font awesome
+//rimuovere determinato oggetto
 //pending task mannaggia a chi so io FINITO DOPO 3 ORE
 //MANNAGGIA AL GRANDISSIMO
